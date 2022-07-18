@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n")
+
     fun onEqual(view: View) {
         if (lastNumeric) {
             var tvValue = tvInput?.text.toString()
@@ -76,11 +76,16 @@ class MainActivity : AppCompatActivity() {
                     if (prefix.isNotEmpty()) {
                         one = prefix + one
                     }
-                    if (two.toInt() == 0)
+                    if (two.toInt() == 0) {
+                        tvInput?.text = " "
                         Toast.makeText(this, "It is not possible to divide by 0", Toast.LENGTH_LONG)
                             .show()
 
-                    tvInput?.text = removeZeroAfterDot((one.toDouble() / two.toDouble()).toString())
+                    } else {
+
+                        tvInput?.text =
+                            removeZeroAfterDot((one.toDouble() / two.toDouble()).toString())
+                    }
 //                    try {
 //                        tvInput?.text =
 //                            removeZeroAfterDot((one.toDouble() / two.toDouble()).toString())
@@ -88,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 //                        Toast.makeText(this, "It is not possible to divide by 0", Toast.LENGTH_LONG)
 //                            .show()
 //                    }
-                    //Is try-catch a good practice
+                    //Is try-catch a good practice?
 
                 } else if (tvValue.contains("*")) {
                     val splitValue = tvValue.split("*")
